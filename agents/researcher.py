@@ -65,11 +65,27 @@ def researcher_node(state: dict) -> dict:
         "safety_tip": "an important child safety tip or precaution relevant to the child's current age and developmental stage",
     }
 
+    # Build avoidance list from rejected names and history
+    rejected_names = state.get("rejected_names", [])
+    history = state.get("history", [])
+    past_names = [h.get("name_en", "") for h in history if h.get("name_en")]
+    avoid_names = list(set(rejected_names + past_names))
+
+    avoid_section = ""
+    if avoid_names:
+        avoid_list = "\n".join(f"  - {name}" for name in avoid_names)
+        avoid_section = (
+            f"\n\n⚠️ DO NOT generate any of these topics (already used or rejected):\n"
+            f"{avoid_list}\n"
+            f"Generate something COMPLETELY DIFFERENT from all of the above."
+        )
+
     human_prompt = (
         f"Generate ONE {category_descriptions[category]} for a child aged {age_group}.\n\n"
         f"Category: {category}\n"
-        f"Child's age: {age_group}\n\n"
-        "Remember: Use REAL references with REAL DOI links. Respond with raw JSON only."
+        f"Child's age: {age_group}\n"
+        f"{avoid_section}\n\n"
+        "Remember: Use REAL references with verifiable links. Respond with raw JSON only."
     )
 
     messages = [

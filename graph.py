@@ -20,11 +20,19 @@ def pick_category_node(state: dict) -> dict:
 
 
 def increment_retry_node(state: dict) -> dict:
-    """Increment retry count and pick a new category on retry."""
+    """Increment retry count, collect rejected name, and pick a new category on retry."""
     new_category = random.choice(config.CATEGORIES)
+    rejected = list(state.get("rejected_names", []))
+
+    # Add the current recommendation name to the rejected list
+    rec = state.get("recommendation", {})
+    if rec.get("name"):
+        rejected.append(rec["name"])
+
     return {
         "retry_count": state.get("retry_count", 0) + 1,
         "category": new_category,
+        "rejected_names": rejected,
     }
 
 

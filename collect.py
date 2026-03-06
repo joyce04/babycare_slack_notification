@@ -50,6 +50,7 @@ def collect_one(age_group: str) -> bool:
         "slack_payload": {},
         "history": history,
         "retry_count": 0,
+        "rejected_names": [],
         "error": "",
     }
 

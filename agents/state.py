@@ -35,4 +35,5 @@ class RecommendationState(TypedDict):
     # --- Context ---
     history: list            # Past recommendations loaded from CSV
     retry_count: int         # Number of retries (max 3)
+    rejected_names: list     # Names rejected by validator or dedup (fed back to researcher)
     error: str               # Error message if any
