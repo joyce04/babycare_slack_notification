@@ -94,10 +94,10 @@ python main.py send
 
 Both workflows run automatically when configured:
 
-| Workflow | Schedule | What it does |
-|---|---|---|
-| **Collect** | Daily (midnight UTC) | Generates 2 recommendations, commits CSV |
-| **Send** | Daily (7:00 AM UTC) | Sends 1 age-appropriate recommendation to Slack |
+| Workflow | Schedule (UTC) | Schedule (PST) | What it does |
+|---|---|---|---|
+| **Collect** | Daily (10:00 AM UTC) | Daily (2:00 AM PST) | Generates 2 recommendations, commits CSV |
+| **Send** | Daily (2:00 PM UTC) | Daily (6:00 AM PST) | Sends 1 age-appropriate recommendation to Slack |
 
 ### Required Secrets
 
