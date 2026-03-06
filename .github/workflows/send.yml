@@ -35,7 +35,7 @@ jobs:
         uses: astral-sh/setup-uv@v4
 
       - name: Install dependencies
-        run: uv pip install --system -e "."
+        run: uv sync
 
       - name: Send recommendation to Slack
         run: |
@@ -44,7 +44,7 @@ jobs:
             ARGS="--dry-run"
           fi
 
-          python send.py $ARGS
+          uv run python main.py send $ARGS
 
       - name: Commit updated CSV (mark as sent)
         run: |

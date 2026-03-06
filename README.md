@@ -170,6 +170,12 @@ date,type,name_en,name_kr,age_group,skill_area,reasoning,reference,reference_lin
 
 ---
 
+## 🤖 Built With
+
+This project was primarily created with **Antigravity** and **Claude Opus 4.6**.
+
+---
+
 ## 📄 License
 
 MIT

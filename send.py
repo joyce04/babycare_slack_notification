@@ -20,6 +20,9 @@ CATEGORY_HEADERS = {
     "exercise": "🏃 Exercise / 운동",
     "toy": "🧸 Toy Recommendation / 장난감 추천",
     "health_tip": "🩺 Health Tip / 건강 팁",
+    "book": "📖 Book Recommendation / 도서 추천",
+    "development_tip": "🌱 Development Tip / 발달 팁",
+    "safety_tip": "🛡️ Safety Tip / 안전 팁",
 }
 
 
