@@ -1,3 +1,4 @@
+date,type,name_en,name_kr,age_group,skill_area,reasoning,reference,reference_link,english_content,korean_content,amazon_link,sent
 2026-03-05,health_tip,Vitamin D Supplementation,비타민 D 보충제,0 months,Health,"Newborns rely on vitamin D for healthy bone growth. Supplementation is essential because breast milk often does not provide adequate levels, and sun exposure is not recommended for infants due to the risk of skin damage. Vitamin D deficiency can lead to rickets and other bone disorders.","Wagner, C. L., Greer, F. R., & American Academy of Pediatrics Section on Breastfeeding (2008). Prevention of rickets and vitamin D deficiency in infants, children, and adolescents. Pediatrics, 122(5), 1142-1152.",https://doi.org/10.1542/peds.2008-1862,"☀️ *Vitamin D Supplementation* (Health)
 Give your baby a daily vitamin D supplement. Breast milk may not provide enough vitamin D, which is crucial for bone development and calcium absorption.
 

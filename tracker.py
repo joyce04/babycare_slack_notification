@@ -77,7 +77,7 @@ def log_recommendation(
     korean_content: str = "",
 ) -> None:
     """Append a recommendation to the CSV file."""
-    file_exists = os.path.exists(csv_path)
+    file_exists = os.path.exists(csv_path) and os.path.getsize(csv_path) > 0
 
     with open(csv_path, "a", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_HEADERS)
@@ -100,3 +100,4 @@ def log_recommendation(
             "amazon_link": recommendation.get("amazon_link", ""),
             "sent": "false",
         })
+
