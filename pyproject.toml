@@ -1,0 +1,19 @@
+[project]
+name = "daily-child-dev-alert"
+version = "1.0.0"
+description = "LangGraph multi-agent daily child development recommendation system with Slack alerts"
+requires-python = ">=3.11"
+dependencies = [
+    "langgraph>=0.2.0",
+    "langchain-openrouter",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+

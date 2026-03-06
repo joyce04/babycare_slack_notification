@@ -1,0 +1,65 @@
+name: "Collect Recommendations"
+
+on:
+  # Run daily at midnight UTC to collect recommendations
+  schedule:
+    - cron: "0 0 * * *"
+  # Allow manual trigger with configurable options
+  workflow_dispatch:
+    inputs:
+      age_group:
+        description: "Child age (e.g. '2 months', '6 months', '3 years')"
+        required: false
+        default: ""
+        type: string
+      count:
+        description: "Number of recommendations to collect"
+        required: false
+        default: "2"
+        type: string
+
+env:
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  CHILD_BIRTHDATE: ${{ secrets.CHILD_BIRTHDATE }}
+  CHILD_NAME: ${{ secrets.CHILD_NAME }}
+  OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'google/gemini-2.0-flash-001' }}
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        run: uv pip install --system -e "."
+
+      - name: Collect recommendations
+        run: |
+          AGE_GROUP="${{ github.event.inputs.age_group || '' }}"
+          COUNT="${{ github.event.inputs.count || '2' }}"
+
+          ARGS=""
+          if [ -n "$AGE_GROUP" ]; then
+            ARGS="$ARGS --age \"$AGE_GROUP\""
+          fi
+          ARGS="$ARGS --count $COUNT"
+
+          python collect.py $ARGS
+
+      - name: Commit updated CSV
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add recommendations.csv
+          git diff --cached --quiet || git commit -m "📋 Collected new recommendations [skip ci]"
+          git push
