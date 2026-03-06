@@ -18,6 +18,9 @@ env:
   CHILD_NAME: ${{ secrets.CHILD_NAME }}
   CHILD_BIRTHDATE: ${{ secrets.CHILD_BIRTHDATE }}
 
+permissions:
+  contents: write
+
 jobs:
   send:
     runs-on: ubuntu-latest

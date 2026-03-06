@@ -24,6 +24,9 @@ env:
   CHILD_NAME: ${{ secrets.CHILD_NAME }}
   OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'google/gemini-2.0-flash-001' }}
 
+permissions:
+  contents: write
+
 jobs:
   collect:
     runs-on: ubuntu-latest
