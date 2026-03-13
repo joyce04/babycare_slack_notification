@@ -42,9 +42,9 @@ def get_child_age() -> str:
     today = date.today()
     total_months = (today.year - birth.year) * 12 + (today.month - birth.month)
 
-    # Adjust if the day hasn't passed yet this month
-    if today.day < birth.day:
-        total_months -= 1
+    # to get advanced information
+    # if today.day < birth.day:
+    #     total_months -= 1
 
     if total_months < 0:
         return "0 months"
