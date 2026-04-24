@@ -36,7 +36,11 @@ def load_history(csv_path: str) -> list[dict]:
 def get_unsent_recommendations(csv_path: str) -> list[dict]:
     """Get all recommendations that haven't been sent yet."""
     history = load_history(csv_path)
-    return [r for r in history if r.get("sent", "false").lower() == "false"]
+    return sorted(
+        [r for r in history if r.get("sent", "false").lower() == "false"],
+        key=lambda x: x.get("date", ""), 
+        reverse=True
+    )[:5]
 
 
 def mark_as_sent(csv_path: str, target_date: str, target_name: str) -> bool:
