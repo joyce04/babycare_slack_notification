@@ -3,7 +3,7 @@ name: "Collect Recommendations"
 on:
   # Run daily at 10:00 AM UTC (2:00 AM PST) to collect recommendations
   schedule:
-    - cron: "0 10 * * *"
+    - cron: "0 10 * * 5,6"  
   # Allow manual trigger with configurable options
   workflow_dispatch:
     inputs:
