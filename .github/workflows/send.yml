@@ -2,8 +2,8 @@ name: "Send Daily Recommendation"
 
 on:
   # Run daily at 2:00 PM UTC (6:00 AM PST)
-  schedule:
-    - cron: "0 14 * * *"
+  # schedule:
+    # - cron: "0 14 * * *"
   # Allow manual trigger
   workflow_dispatch:
     inputs:
